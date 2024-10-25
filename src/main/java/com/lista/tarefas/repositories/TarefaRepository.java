@@ -1,4 +1,7 @@
 package com.lista.tarefas.repositories;
 
-public class TarefaRepository {
+import com.lista.tarefas.entities.Tarefa;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface TarefaRepository extends JpaRepository<Tarefa, Long> {
 }
