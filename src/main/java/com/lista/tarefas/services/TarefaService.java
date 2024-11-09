@@ -22,10 +22,10 @@ public class TarefaService {
 
     public Tarefa criarTarefa(TarefaDTO task) {
         Tarefa tarefa = new Tarefa();
-        tarefa.setTitulo(task.getTitulo());
-        tarefa.setDescricao(task.getDescricao());
+        tarefa.setTitulo(task.titulo());
+        tarefa.setDescricao(task.descricao());
         tarefa.setDataCriacao(LocalDateTime.now());
-        tarefa.setDataVencimento(LocalDateTime.parse(task.getDataVencimento(), DATE_FORMATTER));
+        tarefa.setDataVencimento(LocalDateTime.parse(task.dataVencimento(), DATE_FORMATTER));
         tarefa.setConcluida(false);
 
         return tarefaRepository.save(tarefa);
@@ -39,12 +39,11 @@ public class TarefaService {
     @Transactional
     public Tarefa atualizarTarefa(Long id, Tarefa tarefaAtualizada) {
         Optional<Tarefa> tarefaExistente = this.buscarTarefaPorId(id);
-
+        System.out.println(tarefaExistente);
         if (tarefaExistente.isPresent()) {
             Tarefa tarefa = tarefaExistente.get();
             tarefa.setTitulo(tarefaAtualizada.getTitulo());
             tarefa.setDescricao(tarefaAtualizada.getDescricao());
-            tarefa.setConcluida(tarefaAtualizada.isConcluida());
             tarefa.setDataVencimento(tarefaAtualizada.getDataVencimento());
             return tarefaRepository.save(tarefa);
         } else {

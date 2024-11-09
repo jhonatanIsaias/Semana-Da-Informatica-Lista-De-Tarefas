@@ -12,7 +12,7 @@ import java.util.List;
 @RestController
 @RequestMapping ("tarefas")
 @RequiredArgsConstructor
-@CrossOrigin(origins = "http://localhost:4200", methods = {RequestMethod.GET, RequestMethod.POST})
+@CrossOrigin(origins = "http://localhost:4200", methods = {RequestMethod.GET, RequestMethod.POST,RequestMethod.DELETE,RequestMethod.PUT})
 public class TarefaController {
 
     private final TarefaService tarefaService;
@@ -48,7 +48,7 @@ public class TarefaController {
             return  ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
         }
     }
-    @PatchMapping("/{id}/concluir")
+    @PutMapping("/{id}/concluir")
     public ResponseEntity<Tarefa> marcarComoConcluida(@PathVariable Long id) {
         try {
             Tarefa tarefa = tarefaService.marcarComoConcluida(id);
