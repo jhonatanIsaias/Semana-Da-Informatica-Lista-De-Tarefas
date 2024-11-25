@@ -5,6 +5,7 @@ import com.lista.tarefas.services.dto.TarefaDTO;
 import com.lista.tarefas.models.TarefaModel;
 import com.lista.tarefas.repositories.TarefaRepository;
 import com.lista.tarefas.services.TarefaService;
+import com.lista.tarefas.services.form.TarefaForm;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -23,7 +24,7 @@ public class TarefaServiceImpl implements TarefaService {
     private static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm");
 
     @Override
-    public TarefaDTO criarTarefa(TarefaDTO task) {
+    public TarefaDTO criarTarefa(TarefaForm task) {
         TarefaModel tarefaModel = new TarefaModel();
         tarefaModel.setTitulo(task.titulo());
         tarefaModel.setDescricao(task.descricao());

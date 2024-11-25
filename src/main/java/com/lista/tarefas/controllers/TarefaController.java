@@ -3,6 +3,7 @@ package com.lista.tarefas.controllers;
 import com.lista.tarefas.models.TarefaModel;
 import com.lista.tarefas.services.TarefaService;
 import com.lista.tarefas.services.dto.TarefaDTO;
+import com.lista.tarefas.services.form.TarefaForm;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,13 +14,13 @@ import java.util.List;
 @RestController
 @RequestMapping ("v1")
 @RequiredArgsConstructor
-@CrossOrigin(origins = "http://localhost:4200", methods = {RequestMethod.GET, RequestMethod.POST,RequestMethod.DELETE,RequestMethod.PUT})
+@CrossOrigin(origins = "*", methods = {RequestMethod.GET, RequestMethod.POST,RequestMethod.DELETE,RequestMethod.PUT})
 public class TarefaController {
 
     private final TarefaService tarefaService;
 
     @PostMapping("/tarefas")
-    public ResponseEntity<TarefaDTO> criarTarefa(@RequestBody TarefaDTO tarefa) {
+    public ResponseEntity<TarefaDTO> criarTarefa(@RequestBody TarefaForm tarefa) {
         TarefaDTO novaTarefaModel = tarefaService.criarTarefa(tarefa);
         return ResponseEntity.status(HttpStatus.CREATED).body(novaTarefaModel);
     }
